@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Public Defence — Knowledge Production in the New Data Era</title>
+
+  <style>
+    :root {
+      --page: #f1f4ef;
+      --card: #ffffff;
+      --accent: #39796b;
+      --accent-dark: #28584e;
+      --ink: #25312e;
+      --muted: #64716c;
+      --line: #dce5de;
+      --highlight: #edf3e5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+      margin: 0;
+    }
+
+    body {
+      background: var(--page);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .page {
+      display: grid;
+      min-height: 100vh;
+      min-height: 100svh;
+      place-items: center;
+      padding: clamp(12px, 2.5vw, 42px);
+    }
+
+    .content {
+      width: min(94vw, 1900px);
+      margin: auto;
+      padding:
+        clamp(26px, 4.5vh, 64px)
+        clamp(24px, 5vw, 100px)
+        clamp(18px, 2.5vh, 34px);
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-top: clamp(5px, .45vw, 8px) solid var(--accent);
+      border-radius: clamp(9px, 1vw, 16px);
+      box-shadow: 0 18px 54px rgba(37, 49, 46, 0.08);
+      text-align: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 clamp(12px, 2vh, 22px);
+      color: var(--accent-dark);
+      font-size: clamp(.7rem, .85vw, 1rem);
+      font-weight: 700;
+      letter-spacing: .15em;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 5.8vw, 7.2rem);
+      line-height: .98;
+      letter-spacing: -.05em;
+    }
+
+    .title-primary {
+      display: block;
+      white-space: nowrap;
+    }
+
+    .title-secondary {
+      display: block;
+      margin-top: clamp(5px, .7vw, 12px);
+      color: var(--accent-dark);
+      font-size: .68em;
+      letter-spacing: -.035em;
+    }
+
+    .school {
+      margin: clamp(12px, 1.8vh, 22px) 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.25vw, 1.4rem);
+    }
+
+    .accent-line {
+      width: clamp(48px, 4vw, 72px);
+      height: clamp(3px, .25vw, 5px);
+      margin: clamp(15px, 2.2vh, 28px) auto;
+      background: var(--accent);
+      border-radius: 3px;
+    }
+
+    .details {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(10px, 1.2vw, 20px);
+      width: min(84%, 1280px);
+      margin: 0 auto;
+    }
+
+    .item {
+      padding: clamp(11px, 1.2vw, 20px);
+      background: #f8faf7;
+      border: 1px solid #e7ece7;
+      border-radius: 7px;
+    }
+
+    .item-label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--accent-dark);
+      font-size: clamp(.67rem, .75vw, .85rem);
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .item p {
+      margin: 0;
+      font-size: clamp(.92rem, 1.1vw, 1.25rem);
+      line-height: 1.45;
+    }
+
+    .bottom-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px 22px;
+      margin-top: clamp(15px, 2.2vh, 26px);
+    }
+
+    .place-date {
+      color: var(--muted);
+      font-size: clamp(.9rem, 1vw, 1.1rem);
+    }
+
+    .lectio {
+      display: inline-block;
+      padding: clamp(8px, .7vw, 12px) clamp(13px, 1.1vw, 20px);
+      color: var(--accent-dark);
+      background: var(--highlight);
+      border: 1px solid #d8e5ca;
+      border-radius: 5px;
+      font-size: clamp(.9rem, 1vw, 1.1rem);
+      font-weight: 700;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+
+    .lectio:hover,
+    .lectio:focus-visible {
+      background: #e2edcf;
+    }
+
+    .brand {
+      display: flex;
+      justify-content: center;
+      margin: clamp(14px, 2vh, 24px) auto 0;
+      padding-top: clamp(10px, 1.4vh, 18px);
+      border-top: 1px solid var(--line);
+    }
+
+    .brand img {
+      display: block;
+      width: 80%;
+      max-height: clamp(42px, 8vh, 100px);
+      object-fit: contain;
+      object-position: center;
+    }
+
+    @media (max-width: 700px) {
+      .page {
+        padding: 12px;
+      }
+
+      .content {
+        width: 100%;
+        padding: 25px 18px 16px;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 9vw, 3.5rem);
+      }
+
+      .title-primary {
+        white-space: normal;
+      }
+
+      .details {
+        grid-template-columns: 1fr;
+        width: 100%;
+        gap: 9px;
+      }
+
+      .item {
+        padding: 11px 12px;
+      }
+
+      .brand img {
+        width: 90%;
+        max-height: 52px;
+      }
+    }
+
+    @media (max-height: 720px) and (min-width: 701px) {
+      .page {
+        padding-top: 12px;
+        padding-bottom: 12px;
+      }
+
+      .content {
+        padding-top: 22px;
+        padding-bottom: 14px;
+      }
+
+      .eyebrow {
+        margin-bottom: 10px;
+      }
+
+      .school {
+        margin-top: 10px;
+      }
+
+      .accent-line {
+        margin-top: 12px;
+        margin-bottom: 12px;
+      }
+
+      .item {
+        padding-top: 9px;
+        padding-bottom: 9px;
+      }
+
+      .bottom-row {
+        margin-top: 12px;
+      }
+
+      .brand {
+        margin-top: 12px;
+        padding-top: 9px;
+      }
+
+      .brand img {
+        max-height: 44px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="content" aria-label="Public defence information">
+      <p class="eyebrow">Public Defence · Doctoral Dissertation · Marketing</p>
+
+      <h1>
+        <span class="title-primary">Knowledge Production</span>
+        <span class="title-secondary">in the New Data Era</span>
+      </h1>
+
+      <p class="school">UEF Business School</p>
+      <div class="accent-line" aria-hidden="true"></div>
+
+      <section class="details" aria-label="Defence participants">
+        <div class="item">
+          <span class="item-label">Defender</span>
+          <p>Peng A. Yang</p>
+        </div>
+
+        <div class="item">
+          <span class="item-label">Opponent</span>
+          <p>Professor Berta Ferrer-Rosell</p>
+        </div>
+
+        <div class="item">
+          <span class="item-label">Supervisors</span>
+          <p>Professor Juho Pesonen<br>Associate Professor Heli Hallikainen</p>
+        </div>
+
+        <div class="item">
+          <span class="item-label">Custos</span>
+          <p>Professor Juho Pesonen</p>
+        </div>
+      </section>
+
+      <div class="bottom-row">
+        <div class="place-date">Joensuu, Finland · 6 November 2026</div>
+        <a class="lectio" href="rectio_main.html">Lectio Praecursoria</a>
+      </div>
+
+      <footer class="brand">
+        <img src="uef logo.png" alt="University and partner logos">
+      </footer>
+    </section>
+  </main>
+</body>
+</html>

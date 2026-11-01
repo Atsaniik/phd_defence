@@ -1,0 +1,1865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Peng A. Yang | Lectio Praecursoria 2026</title>
+
+  <style>
+    :root {
+      --blue: #143a68;
+      --accent: #286bb1;
+      --ink: #172b43;
+      --muted: #52657b;
+      --background: #f5f8fc;
+      --white: #ffffff;
+      --line: #dce5f0;
+      --soft: #eaf2fc;
+      --green: #246953;
+      --green-soft: #eaf5ef;
+      --amber: #885c16;
+      --amber-soft: #fff5df;
+
+      --page-x: clamp(16px, 4vw, 76px);
+      --page-y: clamp(18px, 3vh, 42px);
+      --gap: clamp(12px, 1.5vw, 24px);
+      --card-padding: clamp(16px, 1.7vw, 28px);
+      --radius: 14px;
+      --content-width: 1400px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      height: 100vh;
+      height: 100dvh;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      overflow: hidden;
+      color: var(--ink);
+      background: var(--background);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    /* =====================================================
+       HEADER — SAME WIDTH AS THE SLIDE CONTENT
+       ===================================================== */
+
+    .header {
+      padding:
+        clamp(10px, 1.5vh, 18px)
+        var(--page-x);
+      background: var(--background);
+    }
+
+    .header-inner {
+      width: 100%;
+      max-width: var(--content-width);
+      margin: 0 auto;
+
+      display: grid;
+      grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1.35fr)
+        minmax(0, 0.75fr);
+      align-items: center;
+      gap: clamp(14px, 2vw, 30px);
+
+      padding:
+        clamp(14px, 1.6vh, 22px)
+        var(--card-padding);
+
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .header-inner > div {
+      min-width: 0;
+    }
+
+    .institution {
+      color: var(--blue);
+      font-size: clamp(16px, 1.5vw, 23px);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .institution small {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: clamp(11px, 0.95vw, 15px);
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .defence-officials {
+      display: grid;
+      gap: 7px;
+      justify-self: center;
+      color: var(--ink);
+      font-size: clamp(12px, 1vw, 16px);
+      line-height: 1.4;
+    }
+
+    .official-row {
+      display: grid;
+      grid-template-columns: 76px minmax(0, 1fr);
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .official-role {
+      color: var(--muted);
+    }
+
+    .official-name {
+      font-weight: 600;
+      overflow-wrap: anywhere;
+    }
+
+    .event {
+      text-align: right;
+      color: var(--muted);
+      font-size: clamp(12px, 1vw, 16px);
+      line-height: 1.5;
+    }
+
+    .event strong {
+      color: var(--blue);
+      font-size: clamp(16px, 1.3vw, 21px);
+    }
+
+    /* =====================================================
+       HORIZONTAL SLIDES
+       ===================================================== */
+
+    .slides {
+      min-height: 0;
+      width: 100%;
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      overscroll-behavior-x: contain;
+    }
+
+    .slides::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slide {
+      flex: 0 0 100%;
+      min-width: 0;
+      height: 100%;
+      padding: var(--page-y) var(--page-x);
+      overflow-y: auto;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /*
+      Short slides are vertically centred.
+      Longer slides remain accessible through vertical scrolling.
+    */
+    .content {
+      width: 100%;
+      max-width: var(--content-width);
+      margin: auto;
+      flex: 0 0 auto;
+    }
+
+    .eyebrow {
+      margin: 0 0 clamp(10px, 1.4vh, 18px);
+      color: var(--accent);
+      font-size: clamp(11px, 1vw, 15px);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      overflow-wrap: break-word;
+    }
+
+    h1 {
+      max-width: 1150px;
+      margin: 0;
+      color: var(--blue);
+      font-size: clamp(34px, 4.5vw, 70px);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+    }
+
+    h2 {
+      margin: 0 0 clamp(12px, 2vh, 24px);
+      color: var(--blue);
+      font-size: clamp(29px, 3.3vw, 52px);
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+    }
+
+    .subtitle {
+      max-width: 1100px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: clamp(21px, 2.4vw, 36px);
+      line-height: 1.3;
+    }
+
+    .lead {
+      max-width: 1150px;
+      margin: 0 0 clamp(16px, 2.2vh, 28px);
+      color: var(--muted);
+      font-size: clamp(18px, 1.8vw, 27px);
+      line-height: 1.4;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--gap);
+    }
+
+    .card {
+      min-width: 0;
+      padding: var(--card-padding);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .card h3 {
+      margin: 0 0 12px;
+      color: var(--blue);
+      font-size: clamp(21px, 1.85vw, 29px);
+      line-height: 1.2;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: clamp(17px, 1.45vw, 23px);
+      line-height: 1.4;
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--accent);
+      font-size: clamp(11px, 0.9vw, 14px);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .highlight {
+      margin-top: clamp(16px, 2.2vh, 28px);
+      padding: clamp(16px, 1.8vw, 26px);
+      background: var(--soft);
+      border-left: 5px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: clamp(20px, 2vw, 30px);
+      line-height: 1.3;
+    }
+
+    .note {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: clamp(13px, 1vw, 16px);
+      line-height: 1.45;
+    }
+
+    /* =====================================================
+       PAGE 1 — OPENING
+       ===================================================== */
+
+    .opening-question {
+      margin-top: clamp(22px, 4vh, 40px);
+      padding: var(--card-padding);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .opening-question p {
+      margin: 0;
+      font-size: clamp(23px, 2.4vw, 36px);
+      line-height: 1.35;
+    }
+
+    .opening-question small {
+      display: block;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: clamp(15px, 1.2vw, 19px);
+      line-height: 1.4;
+    }
+
+    /* =====================================================
+       PAGE 3 — eCFTD CYCLE
+       ===================================================== */
+
+    .cycle {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--gap);
+    }
+
+    .cycle-card {
+      padding: clamp(15px, 1.4vw, 23px);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .cycle-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .step {
+      flex: 0 0 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue);
+      color: var(--white);
+      border-radius: 50%;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .cycle-card h3 {
+      margin: 0;
+      color: var(--blue);
+      font-size: clamp(19px, 1.55vw, 25px);
+      line-height: 1.2;
+    }
+
+    .cycle-card p {
+      margin: 0;
+      font-size: clamp(16px, 1.2vw, 20px);
+      line-height: 1.4;
+    }
+
+    .cycle-card .quote {
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+
+    .details {
+      color: var(--muted);
+    }
+
+    .volition {
+      background: var(--green-soft);
+      border-color: #b9daca;
+    }
+
+    .volition h3 {
+      color: var(--green);
+    }
+
+    .volition .step {
+      background: var(--green);
+    }
+
+    .conditions {
+      background: var(--amber-soft);
+      border-color: #ecd8ae;
+    }
+
+    .conditions h3 {
+      color: var(--amber);
+    }
+
+    .conditions .step {
+      background: var(--amber);
+    }
+
+    .feedback {
+      background: var(--soft);
+    }
+
+    .cycle-summary {
+      margin-top: 16px;
+      padding: 15px 20px;
+      border-radius: 10px;
+      background: var(--blue);
+      color: var(--white);
+      font-size: clamp(16px, 1.3vw, 21px);
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    /* =====================================================
+       PAGE 4 — SEMANTIC NETWORK
+       ===================================================== */
+
+    .network-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: var(--gap);
+      align-items: stretch;
+    }
+
+    .network-panel {
+      margin: 0;
+      padding: clamp(14px, 1.5vw, 24px);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .review {
+      margin: 0;
+      color: var(--blue);
+      font-size: clamp(17px, 1.45vw, 23px);
+      line-height: 1.4;
+      font-style: italic;
+    }
+
+    .network-panel svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin-top: 10px;
+    }
+
+    .network-panel figcaption {
+      color: var(--muted);
+      font-size: clamp(12px, 0.9vw, 15px);
+      line-height: 1.4;
+    }
+
+    .edge {
+      stroke: #9db2ca;
+      stroke-width: 3;
+    }
+
+    .edge.secondary {
+      stroke-dasharray: 7 6;
+      stroke-width: 2;
+    }
+
+    .network-label {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 20px;
+      text-anchor: middle;
+      dominant-baseline: middle;
+      font-weight: 700;
+      fill: var(--blue);
+    }
+
+    .node-noun {
+      fill: #eaf2fc;
+      stroke: #286bb1;
+      stroke-width: 2;
+    }
+
+    .node-adjective {
+      fill: #eaf5ef;
+      stroke: #388368;
+      stroke-width: 2;
+    }
+
+    .node-verb {
+      fill: #fff5df;
+      stroke: #b8852e;
+      stroke-width: 2;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      margin: 6px 0 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      border: 1px solid;
+    }
+
+    .dot.noun {
+      background: #eaf2fc;
+      border-color: #286bb1;
+    }
+
+    .dot.adjective {
+      background: #eaf5ef;
+      border-color: #388368;
+    }
+
+    .dot.verb {
+      background: #fff5df;
+      border-color: #b8852e;
+    }
+
+    .method-points {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .method-point {
+      padding: clamp(14px, 1.3vw, 22px);
+      border-radius: 12px;
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+
+    .method-point h3 {
+      margin: 0 0 7px;
+      color: var(--blue);
+      font-size: clamp(19px, 1.5vw, 24px);
+    }
+
+    .method-point p {
+      margin: 0;
+      font-size: clamp(16px, 1.15vw, 19px);
+      line-height: 1.4;
+    }
+
+    .ai-boundary {
+      padding: 16px;
+      background: var(--soft);
+      border-radius: 12px;
+      color: var(--blue);
+      font-size: clamp(16px, 1.25vw, 20px);
+      line-height: 1.4;
+    }
+
+    /* =====================================================
+       PAGE 6 — STATIC ACKNOWLEDGEMENTS
+       ===================================================== */
+
+    .acknowledgements {
+      --ack-heading: clamp(20px, 1.7vw, 27px);
+      --ack-text: clamp(17px, 1.4vw, 23px);
+    }
+
+    .ack-title {
+      margin-bottom: 12px;
+      font-size: clamp(38px, 4.6vw, 70px);
+      text-align: center;
+    }
+
+    .ack-intro {
+      width: 100%;
+      max-width: none;
+      margin: 0 0 clamp(22px, 3vh, 36px);
+      color: var(--muted);
+      font-size: clamp(18px, 1.7vw, 26px);
+      line-height: 1.45;
+      text-align: left;
+    }
+
+    .ack-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--gap);
+    }
+
+    .ack-card {
+      min-width: 0;
+      padding: var(--card-padding);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .ack-card h3 {
+      margin: 0 0 14px;
+      color: var(--blue);
+      font-size: var(--ack-heading);
+      line-height: 1.25;
+    }
+
+    .ack-card p {
+      margin: 0;
+      color: var(--ink);
+      font-size: var(--ack-text);
+      line-height: 1.5;
+    }
+
+    .ack-card .ack-description {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: clamp(14px, 1.05vw, 17px);
+      line-height: 1.45;
+    }
+
+    .ack-supervisors {
+      background: var(--soft);
+      border-color: #c9dcf2;
+    }
+
+    .ack-partners {
+      margin-top: var(--gap);
+      padding: var(--card-padding);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .ack-partners h3 {
+      margin: 0 0 16px;
+      color: var(--blue);
+      font-size: var(--ack-heading);
+      line-height: 1.25;
+    }
+
+    .coauthor-list {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px 20px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .coauthor-list li {
+      color: var(--ink);
+      font-size: clamp(15px, 1.15vw, 19px);
+      line-height: 1.4;
+      overflow-wrap: break-word;
+    }
+
+    .ack-closing {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: clamp(22px, 3vh, 36px);
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .ack-closing p {
+      margin: 0;
+      color: var(--blue);
+      font-size: clamp(17px, 1.5vw, 24px);
+      line-height: 1.4;
+    }
+
+    .ack-signature {
+      color: var(--muted);
+      font-size: clamp(13px, 1vw, 16px);
+      text-align: right;
+      line-height: 1.5;
+    }
+
+    /* =====================================================
+       FOOTER AND NAVIGATION
+       ===================================================== */
+
+    .footer {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px var(--page-x);
+      background: var(--white);
+      border-top: 1px solid var(--line);
+    }
+
+    .progress-track {
+      position: absolute;
+      top: -4px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--line);
+    }
+
+    .progress {
+      height: 100%;
+      width: 16.6667%;
+      background: var(--accent);
+      transition: width 0.25s ease;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .controls button {
+      padding: 9px 15px;
+      color: var(--blue);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .controls button:hover:not(:disabled) {
+      background: var(--soft);
+    }
+
+    .controls button:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+
+    button:focus-visible,
+    .slides:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: -3px;
+    }
+
+    #counter {
+      min-width: 44px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* =====================================================
+       RESPONSIVE LAYOUTS
+       ===================================================== */
+
+    @media (max-width: 1000px) {
+      .cycle {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .network-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .network-panel svg {
+        max-width: 620px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .method-points {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .ai-boundary {
+        grid-column: 1 / -1;
+      }
+
+      .coauthor-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 950px) {
+      .header-inner {
+        grid-template-columns:
+          minmax(0, 1fr)
+          minmax(0, 1fr);
+        gap: 12px 20px;
+      }
+
+      .institution {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .event {
+        grid-column: 2;
+        grid-row: 1;
+      }
+
+      .defence-officials {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-self: stretch;
+        grid-template-columns:
+          minmax(0, 1.2fr)
+          minmax(0, 1fr);
+        gap: 12px;
+        padding-top: 12px;
+        border-top: 1px solid var(--line);
+      }
+
+      .official-row {
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 8px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      :root {
+        --page-x: 16px;
+        --page-y: 20px;
+      }
+
+      .header-inner {
+        gap: 10px 12px;
+        padding: 14px;
+      }
+
+      .defence-officials {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding-top: 10px;
+      }
+
+      .official-row {
+        grid-template-columns: 70px minmax(0, 1fr);
+      }
+
+      .grid,
+      .cycle,
+      .method-points,
+      .ack-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hint {
+        display: none;
+      }
+
+      .footer {
+        justify-content: center;
+      }
+
+      .controls button {
+        padding: 9px 12px;
+      }
+
+      .cycle-summary {
+        text-align: left;
+      }
+
+      .ack-closing {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .ack-signature {
+        text-align: left;
+      }
+    }
+
+    @media (max-height: 700px) and (min-width: 1001px) {
+      :root {
+        --page-y: 16px;
+        --card-padding: 16px;
+      }
+
+      h2 {
+        font-size: clamp(29px, 3vw, 43px);
+        margin-bottom: 12px;
+      }
+
+      .lead {
+        font-size: 20px;
+        margin-bottom: 16px;
+      }
+
+      .cycle-card {
+        padding: 14px;
+      }
+
+      .cycle-card p {
+        font-size: 16px;
+      }
+
+      .highlight {
+        margin-top: 16px;
+        padding: 16px;
+        font-size: 23px;
+      }
+
+      .ack-title {
+        font-size: 42px;
+      }
+
+      .ack-intro {
+        margin-bottom: 18px;
+        font-size: 19px;
+      }
+
+      .ack-card,
+      .ack-partners {
+        padding: 16px;
+      }
+
+      .ack-card h3,
+      .ack-partners h3 {
+        margin-bottom: 10px;
+        font-size: 21px;
+      }
+
+      .ack-card p {
+        font-size: 18px;
+      }
+
+      .coauthor-list li {
+        font-size: 15px;
+      }
+
+      .ack-closing {
+        margin-top: 18px;
+        padding-top: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slides {
+        scroll-behavior: auto;
+      }
+
+      .progress {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- PERSISTENT HEADER -->
+  <header class="header">
+    <div class="header-inner">
+
+      <div class="institution">
+        UEF Business School
+        <small>University of Eastern Finland</small>
+      </div>
+
+      <div
+        class="defence-officials"
+        aria-label="Opponent and custos"
+      >
+        <div class="official-row">
+          <span class="official-role">Opponent</span>
+          <span class="official-name">
+            Professor Berta Ferrer-Rosell
+          </span>
+        </div>
+
+        <div class="official-row">
+          <span class="official-role">Custos</span>
+          <span class="official-name">
+            Professor Juho Pesonen
+          </span>
+        </div>
+      </div>
+
+      <div class="event">
+        <strong>Peng A. Yang</strong><br>
+        Public Defence 2026
+      </div>
+
+    </div>
+  </header>
+
+  <main
+    id="slides"
+    class="slides"
+    tabindex="0"
+    aria-label="Six-slide lectio praecursoria presentation"
+  >
+
+    <!-- ==================================================
+         PAGE 1: TITLE AND OPENING
+         ================================================== -->
+
+    <section class="slide" aria-labelledby="title-1">
+      <div class="content">
+
+        <p class="eyebrow">Lectio Praecursoria</p>
+
+        <h1 id="title-1">
+          Knowledge Production<br>
+          in the New Data Era
+        </h1>
+
+        <p class="subtitle">
+          A Tourism Platform-Method-Concept Digital Epistemology
+        </p>
+
+        <div class="opening-question">
+          <p>
+            You ask ChatGPT or Gemini:<br>
+            <strong>“Where should I eat tonight?”</strong>
+          </p>
+
+          <small>
+            A useful recommendation may guide a decision.
+            Research must also examine its evidence, assumptions,
+            and analytical process.
+          </small>
+        </div>
+
+        <div class="highlight">
+          For a traveller, the answer may end the search.<br>
+          <strong>For a researcher, it begins the inquiry.</strong>
+        </div>
+
+        <p class="note">
+          Illustrative opening scenario.
+          The dissertation does not empirically investigate
+          ChatGPT or Gemini recommendation systems.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ==================================================
+         PAGE 2: PLATFORM
+         ================================================== -->
+
+    <section class="slide" aria-labelledby="title-2">
+      <div class="content">
+
+        <p class="eyebrow">Platform · Article I</p>
+
+        <h2 id="title-2">What becomes visible?</h2>
+
+        <p class="lead">
+          Digital reviews are evidence about experiences—
+          but platforms shape the evidence available to us.
+        </p>
+
+        <div class="grid">
+
+          <article class="card">
+            <span class="label">Research foundation</span>
+
+            <h3>234 studies</h3>
+
+            <p>
+              A systematic review of TripAdvisor-based research
+              published from 2010 to 2023.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="label">Problem identified</span>
+
+            <h3>Reliability paradox</h3>
+
+            <p>
+              Reviews are treated as authentic expression,
+              while platform mediation receives less attention.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="label">Framework extension</span>
+
+            <h3>Algorithmic selectivity</h3>
+
+            <p>
+              Ranking, filtering, suppression, and amplification
+              shape what researchers can access.
+            </p>
+          </article>
+
+        </div>
+
+        <div class="highlight">
+          <strong>
+            Selection begins before the researcher selects the data.
+          </strong>
+        </div>
+
+        <p class="note">
+          Extends Tribe and Liburd’s tourism knowledge system.
+          Geographic and linguistic imbalances also shape
+          the research record.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ==================================================
+         PAGE 3: ILLUSTRATIVE eCFTD CYCLE
+         ================================================== -->
+
+    <section class="slide" aria-labelledby="title-3">
+      <div class="content">
+
+        <p class="eyebrow">Concept · Article III · eCFTD</p>
+
+        <h2 id="title-3">
+          From “I want to go” to “I went.”
+        </h2>
+
+        <p class="lead">
+          One visitor, one nature destination:
+          intention becomes action through volitional processes—
+          and the experience begins another cycle.
+        </p>
+
+        <div class="cycle">
+
+          <article class="cycle-card">
+            <div class="cycle-heading">
+              <span class="step">1</span>
+              <h3>Image and other predictors</h3>
+            </div>
+
+            <p class="quote">
+              “It looks peaceful. I value nature activities.
+              My friends recommend it, and the visit seems manageable.”
+            </p>
+
+            <p class="details">
+              Beliefs and feelings; attitude;
+              social encouragement; perceived feasibility.
+            </p>
+          </article>
+
+          <article class="cycle-card">
+            <div class="cycle-heading">
+              <span class="step">2</span>
+              <h3>Behavioural intention</h3>
+            </div>
+
+            <p class="quote">
+              “I plan to visit next month and book the guided walk.”
+            </p>
+
+            <p class="details">
+              A plan to act—not evidence
+              that the visit or booking occurred.
+            </p>
+          </article>
+
+          <article class="cycle-card volition">
+            <div class="cycle-heading">
+              <span class="step">3</span>
+              <h3>Volitional processes</h3>
+            </div>
+
+            <p class="quote">
+              “I choose a date and check the bus.
+              The shorter route gives me confidence to participate.”
+            </p>
+
+            <p class="details">
+              <strong>Action planning:</strong> concrete arrangements.<br>
+              <strong>Self-efficacy:</strong> confidence in execution.
+            </p>
+          </article>
+
+          <article class="cycle-card conditions">
+            <div class="cycle-heading">
+              <span class="step">4</span>
+              <h3>Persistence and constraints</h3>
+            </div>
+
+            <p class="quote">
+              “I still want to go weeks later.
+              But I cannot join the evening tour:
+              the last bus leaves too early.”
+            </p>
+
+            <p class="details">
+              <strong>Intention stability:</strong> wanting persists.<br>
+              Time, transport, and resources shape what is possible.
+            </p>
+          </article>
+
+          <article class="cycle-card">
+            <div class="cycle-heading">
+              <span class="step">5</span>
+              <h3>Actions and their evidence</h3>
+            </div>
+
+            <p class="quote">
+              “I bought a ticket, joined the daytime walk,
+              and recommended it to colleagues.”
+            </p>
+
+            <p class="details">
+              Purchase, participation, and recommendation
+              are distinct actions. Reports still need assessment.
+            </p>
+          </article>
+
+          <article class="cycle-card feedback">
+            <div class="cycle-heading">
+              <span class="step">6</span>
+              <h3>Feedback and a new cycle</h3>
+            </div>
+
+            <p class="quote">
+              “The visit changed my view.
+              I posted a review and now intend to return.”
+            </p>
+
+            <p class="details">
+              Experience updates image.
+              The review may shape another visitor’s
+              image and intentions.
+            </p>
+          </article>
+
+        </div>
+
+        <div class="cycle-summary">
+          Image and predictors → intention → volitional processes
+          → action → feedback → new image and intentions
+        </div>
+
+        <p class="note">
+          Fictional rectio example, not the original framework figure.
+          Constraints can interrupt the pathway; the stages can recur
+          throughout a visit. eCFTD remains subject to empirical testing.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ==================================================
+         PAGE 4: KPTopic AND SEMANTIC NETWORK
+         ================================================== -->
+
+    <section class="slide" aria-labelledby="title-4">
+      <div class="content">
+
+        <p class="eyebrow">Method · Article II · KPTopic</p>
+
+        <h2 id="title-4">
+          Not just words—their connections.
+        </h2>
+
+        <p class="lead">
+          KPTopic organizes adjectives, nouns, and verbs
+          into inspectable semantic networks.
+        </p>
+
+        <div class="network-layout">
+
+          <figure class="network-panel">
+
+            <p class="review">
+              “The room was clean, the staff were friendly,
+              and I would recommend the hotel.”
+            </p>
+
+            <!--
+              Teaching illustration, not empirical KPTopic output.
+              The links are manually selected to illustrate relationships.
+            -->
+            <svg
+              viewBox="0 0 640 350"
+              role="img"
+              aria-labelledby="network-title network-description"
+            >
+              <title id="network-title">
+                Illustrative network of review words
+              </title>
+
+              <desc id="network-description">
+                Clean is connected to room, and friendly is connected
+                to staff. Room, staff, and recommend are linked to hotel.
+                These connections illustrate relational structure,
+                not causation or automatic intention classification.
+              </desc>
+
+              <!-- Connections -->
+              <line
+                class="edge"
+                x1="90" y1="75"
+                x2="240" y2="75"
+              />
+
+              <line
+                class="edge"
+                x1="90" y1="260"
+                x2="240" y2="260"
+              />
+
+              <line
+                class="edge secondary"
+                x1="240" y1="75"
+                x2="395" y2="170"
+              />
+
+              <line
+                class="edge secondary"
+                x1="240" y1="260"
+                x2="395" y2="170"
+              />
+
+              <line
+                class="edge"
+                x1="395" y1="170"
+                x2="550" y2="170"
+              />
+
+              <!-- Adjective: clean -->
+              <circle
+                class="node-adjective"
+                cx="90" cy="75" r="49"
+              />
+
+              <text
+                class="network-label"
+                x="90" y="75"
+              >clean</text>
+
+              <!-- Noun: room -->
+              <circle
+                class="node-noun"
+                cx="240" cy="75" r="49"
+              />
+
+              <text
+                class="network-label"
+                x="240" y="75"
+              >room</text>
+
+              <!-- Adjective: friendly -->
+              <circle
+                class="node-adjective"
+                cx="90" cy="260" r="55"
+              />
+
+              <text
+                class="network-label"
+                x="90" y="260"
+              >friendly</text>
+
+              <!-- Noun: staff -->
+              <circle
+                class="node-noun"
+                cx="240" cy="260" r="49"
+              />
+
+              <text
+                class="network-label"
+                x="240" y="260"
+              >staff</text>
+
+              <!-- Noun: hotel -->
+              <circle
+                class="node-noun"
+                cx="395" cy="170" r="55"
+              />
+
+              <text
+                class="network-label"
+                x="395" y="170"
+              >hotel</text>
+
+              <!-- Verb: recommend -->
+              <rect
+                class="node-verb"
+                x="478" y="135"
+                width="144" height="70"
+                rx="22"
+              />
+
+              <text
+                class="network-label"
+                x="550" y="170"
+                style="font-size: 18px;"
+              >recommend</text>
+            </svg>
+
+            <div class="legend" aria-label="Node categories">
+              <span>
+                <i class="dot adjective" aria-hidden="true"></i>
+                Adjective
+              </span>
+
+              <span>
+                <i class="dot noun" aria-hidden="true"></i>
+                Noun
+              </span>
+
+              <span>
+                <i class="dot verb" aria-hidden="true"></i>
+                Verb
+              </span>
+            </div>
+
+            <figcaption>
+              Illustrative network—not actual KPTopic output.
+              Connections visualize selected relationships;
+              they do not establish causation.
+            </figcaption>
+
+          </figure>
+
+          <div class="method-points">
+
+            <article class="method-point">
+              <h3>Transparency</h3>
+              <p>
+                Inspect the steps from raw reviews
+                to the analytical output.
+              </p>
+            </article>
+
+            <article class="method-point">
+              <h3>Explainability</h3>
+              <p>
+                Trace nodes and edges back
+                to the source material.
+              </p>
+            </article>
+
+            <article class="method-point">
+              <h3>Semantic coherence</h3>
+              <p>
+                Preserve connected expressions,
+                rather than only isolated keywords.
+              </p>
+            </article>
+
+            <div class="ai-boundary">
+              <strong>Analysis first; AI narration afterwards.</strong><br>
+              Researcher verification remains necessary.
+            </div>
+
+          </div>
+        </div>
+
+        <p class="note">
+          Demonstrated on 11,729 TripAdvisor reviews from Finnish
+          municipalities; compared with LDA and BERTopic.
+          “Would recommend” and “recommended” require contextual
+          examination: a verb node alone cannot distinguish them.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ==================================================
+         PAGE 5: INTEGRATION AND CONCLUSION
+         ================================================== -->
+
+    <section class="slide" aria-labelledby="title-5">
+      <div class="content">
+
+        <p class="eyebrow">
+          Three layers · One knowledge-production problem
+        </p>
+
+        <h2 id="title-5">
+          Digital knowledge must be made,<br>
+          not merely extracted.
+        </h2>
+
+        <p class="lead">
+          A convincing result is not enough.
+          We must be able to examine its foundations.
+        </p>
+
+        <div class="grid">
+
+          <article class="card">
+            <span class="label">Platform</span>
+
+            <h3>Question the source</h3>
+
+            <p>
+              What shaped the evidence?
+              Whose voices are visible or missing?
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="label">Method</span>
+
+            <h3>Human in the loop</h3>
+
+            <p>
+              How did the analysis transform
+              the evidence into this result?
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="label">Concept</span>
+
+            <h3>Update the concept</h3>
+
+            <p>
+              Are the constructs coherent?
+              Do they distinguish intention from action?
+            </p>
+          </article>
+
+        </div>
+
+        <div class="highlight">
+          <strong>
+            Useful answers support decisions.<br>
+            Accountable inquiry supports knowledge.
+          </strong>
+        </div>
+
+        <p class="note">
+          Next steps: integrated testing of KPTopic and eCFTD,
+          multilingual and cross-platform validation,
+          and reassessment as tourism content becomes increasingly synthetic.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ==================================================
+         PAGE 6: ACKNOWLEDGEMENTS
+         Static closing page for the remainder of the defence
+         ================================================== -->
+
+    <section
+      class="slide acknowledgements"
+      aria-labelledby="title-6"
+    >
+      <div class="content">
+
+        <p class="eyebrow">
+          Joensuu,Finland · 6.11.2026
+        </p>
+
+        <h2 id="title-6" class="ack-title">
+          Thanks · Kiitos · 谢谢
+        </h2>
+
+        <p class="ack-intro">
+          This doctoral journey has been shaped by thoughtful guidance,
+          generous support, and collaboration across countries.
+        </p>
+
+        <div class="ack-grid">
+
+          <article class="ack-card ack-supervisors">
+            <h3>Supervisors</h3>
+
+            <p>
+              Professor Juho Pesonen<br>
+              Associate Professor Heli Hallikainen
+            </p>
+
+            <p class="ack-description">
+              For your guidance, rigorous scholarship,
+              and sustained support throughout this journey.
+            </p>
+          </article>
+
+          <article class="ack-card">
+            <h3>Pre-examiners</h3>
+
+            <p>
+              Professor Berta Ferrer-Rosell<br>
+              Professor Heikki Karjaluoto
+            </p>
+
+            <p class="ack-description">
+              For your careful evaluation and insightful comments
+              that strengthened the dissertation.
+            </p>
+          </article>
+
+          <article class="ack-card">
+            <h3>Financial support</h3>
+
+            <p>
+              Liikesivistysrahasto
+            </p>
+
+            <p class="ack-description">
+              The Foundation for Economic Education—
+              for the financial support that made this work possible.
+            </p>
+          </article>
+
+          <article class="ack-card">
+            <h3>Academic community</h3>
+
+            <p>
+              UEF Business School<br>
+              Leaders and colleagues
+            </p>
+
+            <p class="ack-description">
+              For a supportive research environment,
+              shared ideas, and collegial encouragement.
+            </p>
+          </article>
+
+        </div>
+
+        <article class="ack-partners">
+          <h3>Co-authors</h3>
+
+          <ul class="coauthor-list">
+            <li>Rodolfo Baggio</li>
+            <li>Paul Windrum</li>
+            <li>Matthias Deschryvere</li>
+            <li>Mika Naumanen</li>
+            <li>Aurkene Alzua-Sorzabal</li>
+            <li>Volha Herasimovich</li>
+            <li>Basagaitz Guereno-Omil</li>
+            <li>Andrei P. Kirilenko</li>
+          </ul>
+        </article>
+
+        <div class="ack-closing">
+          <p>
+            
+            <a class="lectio" href="index.html"><strong>From data to knowledge.</strong></a>
+          </p>
+
+          <div class="ack-signature">
+            Peng A. Yang<br>
+            UEF Business School · 2026
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PERSISTENT NAVIGATION -->
+  <footer class="footer">
+
+    <div class="progress-track" aria-hidden="true">
+      <div class="progress" id="progress"></div>
+    </div>
+
+    <div class="hint">
+      ← / →: slides · ↑ / ↓: scroll · F: full screen
+    </div>
+
+    <nav class="controls" aria-label="Slide navigation">
+
+      <button
+        id="previous"
+        type="button"
+        aria-label="Previous slide"
+      >
+        ← Previous
+      </button>
+
+      <span
+        id="counter"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        1 / 6
+      </span>
+
+      <button
+        id="next"
+        type="button"
+        aria-label="Next slide"
+      >
+        Next →
+      </button>
+
+    </nav>
+
+  </footer>
+
+  <script>
+    const slides = document.getElementById("slides");
+    const pages = [...document.querySelectorAll(".slide")];
+    const previous = document.getElementById("previous");
+    const next = document.getElementById("next");
+    const counter = document.getElementById("counter");
+    const progress = document.getElementById("progress");
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    );
+
+    let current = 0;
+    let scrollFrame = null;
+    let resizeTimer = null;
+
+    function updateControls() {
+      counter.textContent = `${current + 1} / ${pages.length}`;
+
+      previous.disabled = current === 0;
+      next.disabled = current === pages.length - 1;
+
+      progress.style.width =
+        `${((current + 1) / pages.length) * 100}%`;
+    }
+
+    function goTo(index, animate = true) {
+      current = Math.max(
+        0,
+        Math.min(index, pages.length - 1)
+      );
+
+      slides.scrollTo({
+        left: current * slides.clientWidth,
+        behavior:
+          animate && !reducedMotion.matches
+            ? "smooth"
+            : "instant"
+      });
+
+      updateControls();
+    }
+
+    previous.addEventListener("click", () => {
+      goTo(current - 1);
+    });
+
+    next.addEventListener("click", () => {
+      goTo(current + 1);
+    });
+
+    /* Update navigation after swiping or horizontal scrolling */
+    slides.addEventListener("scroll", () => {
+      if (scrollFrame !== null) return;
+
+      scrollFrame = requestAnimationFrame(() => {
+        if (slides.clientWidth > 0) {
+          current = Math.max(
+            0,
+            Math.min(
+              Math.round(
+                slides.scrollLeft / slides.clientWidth
+              ),
+              pages.length - 1
+            )
+          );
+
+          updateControls();
+        }
+
+        scrollFrame = null;
+      });
+    }, { passive: true });
+
+    document.addEventListener("keydown", async (event) => {
+      const target = event.target;
+
+      if (
+        target instanceof HTMLElement &&
+        (
+          target.matches("input, textarea, select") ||
+          target.isContentEditable
+        )
+      ) {
+        return;
+      }
+
+      if (event.ctrlKey || event.metaKey || event.altKey) {
+        return;
+      }
+
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        goTo(current + 1);
+      }
+
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        goTo(current - 1);
+      }
+
+      /* Scroll vertically within the current slide */
+      if (
+        event.key === "ArrowDown" ||
+        event.key === "ArrowUp"
+      ) {
+        event.preventDefault();
+
+        pages[current].scrollBy({
+          top: event.key === "ArrowDown" ? 90 : -90,
+          behavior:
+            reducedMotion.matches ? "instant" : "smooth"
+        });
+      }
+
+      if (event.key === "Home") {
+        event.preventDefault();
+        goTo(0);
+      }
+
+      if (event.key === "End") {
+        event.preventDefault();
+        goTo(pages.length - 1);
+      }
+
+      if (event.key.toLowerCase() === "f") {
+        event.preventDefault();
+
+        try {
+          if (!document.fullscreenElement) {
+            await document.documentElement.requestFullscreen();
+          } else {
+            await document.exitFullscreen();
+          }
+        } catch {
+          /*
+            If full-screen access is unavailable,
+            use the browser's full-screen menu option.
+          */
+        }
+      }
+    });
+
+    /* Preserve slide alignment when the window changes size */
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+
+      resizeTimer = setTimeout(() => {
+        goTo(current, false);
+      }, 120);
+    });
+
+    /*
+      No timer or automatic slide advance.
+      Page 6 remains displayed until the presenter navigates away.
+    */
+    updateControls();
+  </script>
+
+</body>
+</html>
