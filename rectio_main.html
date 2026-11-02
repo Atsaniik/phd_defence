@@ -7,6 +7,10 @@
   <title>Peng A. Yang | Lectio Praecursoria 2026</title>
 
   <style>
+    /* =====================================================
+       DESIGN SYSTEM
+       ===================================================== */
+
     :root {
       --blue: #143a68;
       --accent: #286bb1;
@@ -16,17 +20,19 @@
       --white: #ffffff;
       --line: #dce5f0;
       --soft: #eaf2fc;
+
       --green: #246953;
       --green-soft: #eaf5ef;
       --amber: #885c16;
       --amber-soft: #fff5df;
 
-      --page-x: clamp(16px, 4vw, 76px);
-      --page-y: clamp(18px, 3vh, 42px);
-      --gap: clamp(12px, 1.5vw, 24px);
-      --card-padding: clamp(16px, 1.7vw, 28px);
-      --radius: 14px;
       --content-width: 1400px;
+      --page-x: clamp(16px, 3.5vw, 64px);
+      --page-y: clamp(20px, 3vh, 36px);
+      --gap: clamp(14px, 1.5vw, 24px);
+      --card-padding: clamp(16px, 1.6vw, 24px);
+      --radius: 16px;
+      --shadow: 0 8px 28px rgba(20, 58, 104, 0.045);
     }
 
     * {
@@ -49,20 +55,31 @@
       color: var(--ink);
       background: var(--background);
       font-family: Arial, Helvetica, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
     }
 
     button {
       font: inherit;
     }
 
+    h1,
+    h2,
+    h3,
+    p {
+      overflow-wrap: break-word;
+    }
+
     /* =====================================================
-       HEADER — SAME WIDTH AS THE SLIDE CONTENT
+       HEADER
        ===================================================== */
 
     .header {
-      padding:
-        clamp(10px, 1.5vh, 18px)
-        var(--page-x);
+      padding: 12px var(--page-x) 0;
       background: var(--background);
     }
 
@@ -70,22 +87,18 @@
       width: 100%;
       max-width: var(--content-width);
       margin: 0 auto;
-
       display: grid;
       grid-template-columns:
         minmax(0, 1fr)
         minmax(0, 1.35fr)
         minmax(0, 0.75fr);
       align-items: center;
-      gap: clamp(14px, 2vw, 30px);
-
-      padding:
-        clamp(14px, 1.6vh, 22px)
-        var(--card-padding);
-
+      gap: 24px;
+      padding: 16px 24px;
       background: var(--white);
       border: 1px solid var(--line);
       border-radius: var(--radius);
+      box-shadow: var(--shadow);
     }
 
     .header-inner > div {
@@ -94,7 +107,7 @@
 
     .institution {
       color: var(--blue);
-      font-size: clamp(16px, 1.5vw, 23px);
+      font-size: clamp(16px, 1.35vw, 21px);
       font-weight: 700;
       line-height: 1.25;
     }
@@ -103,23 +116,22 @@
       display: block;
       margin-top: 5px;
       color: var(--muted);
-      font-size: clamp(11px, 0.95vw, 15px);
+      font-size: clamp(11px, 0.85vw, 14px);
       font-weight: 400;
       line-height: 1.4;
     }
 
     .defence-officials {
       display: grid;
-      gap: 7px;
+      gap: 6px;
       justify-self: center;
-      color: var(--ink);
-      font-size: clamp(12px, 1vw, 16px);
+      font-size: clamp(12px, 0.95vw, 15px);
       line-height: 1.4;
     }
 
     .official-row {
       display: grid;
-      grid-template-columns: 76px minmax(0, 1fr);
+      grid-template-columns: 72px minmax(0, 1fr);
       gap: 10px;
       align-items: baseline;
     }
@@ -134,24 +146,24 @@
     }
 
     .event {
-      text-align: right;
       color: var(--muted);
-      font-size: clamp(12px, 1vw, 16px);
+      text-align: right;
+      font-size: clamp(12px, 0.95vw, 15px);
       line-height: 1.5;
     }
 
     .event strong {
       color: var(--blue);
-      font-size: clamp(16px, 1.3vw, 21px);
+      font-size: clamp(16px, 1.2vw, 20px);
     }
 
     /* =====================================================
-       HORIZONTAL SLIDES
+       SLIDES AND TYPOGRAPHY
        ===================================================== */
 
     .slides {
-      min-height: 0;
       width: 100%;
+      min-height: 0;
       display: flex;
       overflow-x: auto;
       overflow-y: hidden;
@@ -169,17 +181,19 @@
       flex: 0 0 100%;
       min-width: 0;
       height: 100%;
+      display: flex;
+      flex-direction: column;
       padding: var(--page-y) var(--page-x);
       overflow-y: auto;
       scroll-snap-align: start;
       scroll-snap-stop: always;
-      display: flex;
-      flex-direction: column;
+      scrollbar-width: thin;
+      scrollbar-color: #bdcddd transparent;
     }
 
     /*
-      Short slides are vertically centred.
-      Longer slides remain accessible through vertical scrolling.
+      Auto margins centre shorter slides.
+      Longer slides expand naturally and remain scrollable.
     */
     .content {
       width: 100%;
@@ -188,59 +202,58 @@
       flex: 0 0 auto;
     }
 
+    .slide-heading {
+      margin-bottom: clamp(20px, 2.5vh, 30px);
+    }
+
     .eyebrow {
-      margin: 0 0 clamp(10px, 1.4vh, 18px);
+      margin: 0 0 12px;
       color: var(--accent);
-      font-size: clamp(11px, 1vw, 15px);
+      font-size: clamp(11px, 0.95vw, 14px);
       font-weight: 700;
       letter-spacing: 0.12em;
+      line-height: 1.5;
       text-transform: uppercase;
     }
 
-    h1,
-    h2,
-    h3,
-    p {
-      overflow-wrap: break-word;
-    }
-
     h1 {
-      max-width: 1150px;
+      max-width: 1200px;
       margin: 0;
       color: var(--blue);
-      font-size: clamp(34px, 4.5vw, 70px);
+      font-size: clamp(36px, 4.1vw, 64px);
       line-height: 1.08;
       letter-spacing: -0.035em;
     }
 
     h2 {
-      margin: 0 0 clamp(12px, 2vh, 24px);
+      margin: 0;
       color: var(--blue);
-      font-size: clamp(29px, 3.3vw, 52px);
+      font-size: clamp(30px, 3.1vw, 48px);
       line-height: 1.12;
       letter-spacing: -0.025em;
     }
 
     .subtitle {
       max-width: 1100px;
-      margin: 18px 0 0;
+      margin: 16px 0 0;
       color: var(--muted);
-      font-size: clamp(21px, 2.4vw, 36px);
-      line-height: 1.3;
+      font-size: clamp(20px, 2vw, 31px);
+      line-height: 1.35;
     }
 
     .lead {
       max-width: 1150px;
-      margin: 0 0 clamp(16px, 2.2vh, 28px);
+      margin: 14px 0 0;
       color: var(--muted);
-      font-size: clamp(18px, 1.8vw, 27px);
-      line-height: 1.4;
+      font-size: clamp(18px, 1.5vw, 24px);
+      line-height: 1.45;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: var(--gap);
+      align-items: stretch;
     }
 
     .card {
@@ -249,96 +262,211 @@
       background: var(--white);
       border: 1px solid var(--line);
       border-radius: var(--radius);
-    }
-
-    .card h3 {
-      margin: 0 0 12px;
-      color: var(--blue);
-      font-size: clamp(21px, 1.85vw, 29px);
-      line-height: 1.2;
-    }
-
-    .card p {
-      margin: 0;
-      font-size: clamp(17px, 1.45vw, 23px);
-      line-height: 1.4;
+      box-shadow: var(--shadow);
     }
 
     .label {
       display: block;
       margin-bottom: 10px;
       color: var(--accent);
-      font-size: clamp(11px, 0.9vw, 14px);
+      font-size: clamp(11px, 0.85vw, 13px);
       font-weight: 700;
+      line-height: 1.4;
       text-transform: uppercase;
       letter-spacing: 0.07em;
     }
 
+    .card h3 {
+      margin: 0 0 10px;
+      color: var(--blue);
+      font-size: clamp(21px, 1.65vw, 26px);
+      line-height: 1.2;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: clamp(16px, 1.2vw, 20px);
+      line-height: 1.5;
+    }
+
     .highlight {
-      margin-top: clamp(16px, 2.2vh, 28px);
-      padding: clamp(16px, 1.8vw, 26px);
+      margin-top: var(--gap);
+      padding: clamp(18px, 1.7vw, 26px);
+      color: var(--blue);
       background: var(--soft);
+      border: 1px solid #d5e4f5;
       border-left: 5px solid var(--accent);
       border-radius: 0 var(--radius) var(--radius) 0;
-      font-size: clamp(20px, 2vw, 30px);
-      line-height: 1.3;
+      font-size: clamp(20px, 1.8vw, 28px);
+      line-height: 1.4;
     }
 
     .note {
-      margin: 14px 0 0;
+      margin: 16px 0 0;
       color: var(--muted);
-      font-size: clamp(13px, 1vw, 16px);
-      line-height: 1.45;
+      font-size: clamp(12px, 0.95vw, 15px);
+      line-height: 1.5;
+    }
+
+    /* =====================================================
+       FIGURE PANELS
+       Replace src placeholders with actual image URLs.
+       No generated captions or image-content assumptions.
+       ===================================================== */
+
+    .figure-pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--gap);
+      align-items: stretch;
+      margin-top: var(--gap);
+    }
+
+    .asset-figure {
+      min-width: 0;
+      margin: 0;
+      padding: clamp(12px, 1.3vw, 20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .asset-figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .page2-figures img,
+    .page4-figures img {
+      max-height: clamp(220px, 31vh, 380px);
     }
 
     /* =====================================================
        PAGE 1 — OPENING
        ===================================================== */
 
+    .opening-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: var(--gap);
+      align-items: stretch;
+    }
+
+    .opening-copy {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
     .opening-question {
-      margin-top: clamp(22px, 4vh, 40px);
-      padding: var(--card-padding);
+      padding: clamp(20px, 2vw, 30px);
       background: var(--white);
       border: 1px solid var(--line);
       border-radius: var(--radius);
+      box-shadow: var(--shadow);
     }
 
     .opening-question p {
       margin: 0;
-      font-size: clamp(23px, 2.4vw, 36px);
-      line-height: 1.35;
+      font-size: clamp(21px, 1.9vw, 29px);
+      line-height: 1.4;
+    }
+
+    .opening-prompt {
+      display: block;
+      margin-top: 12px;
+      color: var(--blue);
+      font-size: clamp(26px, 2.35vw, 36px);
+      line-height: 1.2;
+      letter-spacing: -0.025em;
     }
 
     .opening-question small {
       display: block;
-      margin-top: 12px;
+      margin-top: 18px;
       color: var(--muted);
-      font-size: clamp(15px, 1.2vw, 19px);
-      line-height: 1.4;
+      font-size: clamp(15px, 1.1vw, 18px);
+      line-height: 1.5;
+    }
+
+    .opening-slide .highlight {
+      font-size: clamp(20px, 1.65vw, 26px);
+    }
+
+    .opening-figure {
+      padding: clamp(16px, 1.5vw, 24px);
+    }
+
+    .opening-figure img {
+      max-height: clamp(260px, 39vh, 440px);
     }
 
     /* =====================================================
-       PAGE 3 — eCFTD CYCLE
+       PAGE 3 — FRAMEWORK AND SIX-STEP EXAMPLE
        ===================================================== */
+
+    .concept-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.35fr);
+      gap: var(--gap);
+      align-items: start;
+    }
+
+    /* Title and image share the left column. */
+    .concept-visual {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(16px, 2vh, 24px);
+      align-self: stretch;
+    }
+
+    .concept-visual h2 {
+      margin: 0;
+    }
+
+    .page3-figure {
+      padding: clamp(14px, 1.4vw, 22px);
+      align-self: stretch;
+    }
+
+    .concept-visual .page3-figure {
+      flex: 1;
+      width: 100%;
+    }
+
+    .page3-figure img {
+      max-height: 560px;
+    }
 
     .cycle {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: var(--gap);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      align-items: stretch;
     }
 
     .cycle-card {
-      padding: clamp(15px, 1.4vw, 23px);
+      min-width: 0;
+      padding: clamp(14px, 1.2vw, 19px);
       background: var(--white);
       border: 1px solid var(--line);
       border-radius: var(--radius);
+      box-shadow: var(--shadow);
     }
 
     .cycle-heading {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .step {
@@ -347,8 +475,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: var(--blue);
       color: var(--white);
+      background: var(--blue);
       border-radius: 50%;
       font-size: 14px;
       font-weight: 700;
@@ -357,18 +485,18 @@
     .cycle-card h3 {
       margin: 0;
       color: var(--blue);
-      font-size: clamp(19px, 1.55vw, 25px);
-      line-height: 1.2;
+      font-size: clamp(18px, 1.25vw, 21px);
+      line-height: 1.25;
     }
 
     .cycle-card p {
       margin: 0;
-      font-size: clamp(16px, 1.2vw, 20px);
-      line-height: 1.4;
+      font-size: clamp(15px, 1vw, 17px);
+      line-height: 1.45;
     }
 
     .cycle-card .quote {
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       font-style: italic;
     }
 
@@ -407,40 +535,42 @@
     }
 
     .cycle-summary {
-      margin-top: 16px;
-      padding: 15px 20px;
-      border-radius: 10px;
-      background: var(--blue);
+      margin-top: var(--gap);
+      padding: 16px 22px;
       color: var(--white);
-      font-size: clamp(16px, 1.3vw, 21px);
-      line-height: 1.4;
+      background: var(--blue);
+      border-radius: 12px;
+      font-size: clamp(16px, 1.25vw, 20px);
+      line-height: 1.45;
       text-align: center;
     }
 
     /* =====================================================
-       PAGE 4 — SEMANTIC NETWORK
+       PAGE 4 — SEMANTIC NETWORK AND METHOD FIGURES
        ===================================================== */
 
     .network-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
       gap: var(--gap);
       align-items: stretch;
     }
 
     .network-panel {
+      min-width: 0;
       margin: 0;
-      padding: clamp(14px, 1.5vw, 24px);
+      padding: var(--card-padding);
       background: var(--white);
       border: 1px solid var(--line);
       border-radius: var(--radius);
+      box-shadow: var(--shadow);
     }
 
     .review {
       margin: 0;
       color: var(--blue);
-      font-size: clamp(17px, 1.45vw, 23px);
-      line-height: 1.4;
+      font-size: clamp(17px, 1.3vw, 21px);
+      line-height: 1.45;
       font-style: italic;
     }
 
@@ -448,13 +578,14 @@
       display: block;
       width: 100%;
       height: auto;
-      margin-top: 10px;
+      max-height: 250px;
+      margin: 12px auto;
     }
 
     .network-panel figcaption {
       color: var(--muted);
-      font-size: clamp(12px, 0.9vw, 15px);
-      line-height: 1.4;
+      font-size: clamp(12px, 0.9vw, 14px);
+      line-height: 1.45;
     }
 
     .edge {
@@ -498,9 +629,9 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px 18px;
-      margin: 6px 0 12px;
-      font-size: 13px;
+      margin: 0 0 12px;
       color: var(--muted);
+      font-size: 13px;
     }
 
     .legend span {
@@ -512,9 +643,9 @@
     .dot {
       width: 12px;
       height: 12px;
-      border-radius: 50%;
       display: inline-block;
       border: 1px solid;
+      border-radius: 50%;
     }
 
     .dot.noun {
@@ -539,62 +670,233 @@
     }
 
     .method-point {
-      padding: clamp(14px, 1.3vw, 22px);
-      border-radius: 12px;
+      min-width: 0;
+      padding: 16px 20px;
       background: var(--white);
       border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
     }
 
     .method-point h3 {
       margin: 0 0 7px;
       color: var(--blue);
-      font-size: clamp(19px, 1.5vw, 24px);
+      font-size: clamp(19px, 1.35vw, 22px);
+      line-height: 1.25;
     }
 
     .method-point p {
       margin: 0;
-      font-size: clamp(16px, 1.15vw, 19px);
-      line-height: 1.4;
+      font-size: clamp(16px, 1.05vw, 18px);
+      line-height: 1.45;
     }
 
     .ai-boundary {
-      padding: 16px;
-      background: var(--soft);
-      border-radius: 12px;
+      padding: 16px 20px;
       color: var(--blue);
-      font-size: clamp(16px, 1.25vw, 20px);
-      line-height: 1.4;
+      background: var(--soft);
+      border: 1px solid #d5e4f5;
+      border-radius: 12px;
+      font-size: clamp(16px, 1.1vw, 19px);
+      line-height: 1.45;
     }
 
     /* =====================================================
-       PAGE 6 — STATIC ACKNOWLEDGEMENTS
+       PAGE 6 — PUBLIC DEFENCE INFORMATION
+       Scoped green theme
        ===================================================== */
 
-    .acknowledgements {
-      --ack-heading: clamp(20px, 1.7vw, 27px);
-      --ack-text: clamp(17px, 1.4vw, 23px);
+    .defence-slide {
+      --defence-page: #f1f4ef;
+      --defence-card: #ffffff;
+      --defence-accent: #39796b;
+      --defence-accent-dark: #28584e;
+      --defence-ink: #25312e;
+      --defence-muted: #64716c;
+      --defence-line: #dce5de;
+      --defence-highlight: #edf3e5;
+
+      color: var(--defence-ink);
+      background: var(--defence-page);
     }
 
+    .defence-content {
+      width: 100%;
+      max-width: var(--content-width);
+      margin: auto;
+      flex: 0 0 auto;
+      padding:
+        clamp(26px, 3.5vh, 48px)
+        clamp(20px, 4vw, 72px)
+        clamp(18px, 2vh, 28px);
+      background: var(--defence-card);
+      border: 1px solid var(--defence-line);
+      border-top: 6px solid var(--defence-accent);
+      border-radius: var(--radius);
+      box-shadow: 0 18px 54px rgba(37, 49, 46, 0.08);
+      text-align: center;
+    }
+
+    .defence-eyebrow {
+      margin: 0 0 18px;
+      color: var(--defence-accent-dark);
+      font-size: clamp(11px, 0.85vw, 14px);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+
+    .defence-title {
+      margin: 0;
+      color: var(--defence-ink);
+      font-size: clamp(34px, 4.7vw, 74px);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+    }
+
+    .defence-title-primary {
+      display: block;
+    }
+
+    .defence-title-secondary {
+      display: block;
+      margin-top: 10px;
+      color: var(--defence-accent-dark);
+      font-size: 0.68em;
+      letter-spacing: -0.035em;
+    }
+
+    .defence-school {
+      margin: 18px 0 0;
+      color: var(--defence-muted);
+      font-size: clamp(16px, 1.25vw, 22px);
+      line-height: 1.4;
+    }
+
+    .defence-accent-line {
+      width: 64px;
+      height: 4px;
+      margin: 22px auto;
+      background: var(--defence-accent);
+      border-radius: 3px;
+    }
+
+    .defence-details {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      width: min(100%, 1050px);
+      margin: 0 auto;
+    }
+
+    .defence-item {
+      min-width: 0;
+      padding: 16px 20px;
+      background: #f8faf7;
+      border: 1px solid #e7ece7;
+      border-radius: 10px;
+    }
+
+    .defence-item-label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--defence-accent-dark);
+      font-size: clamp(11px, 0.75vw, 13px);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .defence-item p {
+      margin: 0;
+      color: var(--defence-ink);
+      font-size: clamp(16px, 1.1vw, 20px);
+      line-height: 1.45;
+    }
+
+    .defence-bottom-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 12px 24px;
+      margin-top: 22px;
+    }
+
+    .defence-place-date {
+      color: var(--defence-muted);
+      font-size: clamp(14px, 1vw, 18px);
+      line-height: 1.5;
+    }
+
+    .defence-lectio {
+      display: inline-block;
+      padding: 10px 18px;
+      color: var(--defence-accent-dark);
+      background: var(--defence-highlight);
+      border: 1px solid #d8e5ca;
+      border-radius: 7px;
+      font-size: clamp(14px, 1vw, 18px);
+      font-weight: 700;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 4px;
+    }
+
+    .defence-lectio:hover {
+      background: #e2edcf;
+    }
+
+    .defence-lectio:focus-visible {
+      background: #e2edcf;
+      outline: 3px solid var(--defence-accent);
+      outline-offset: 3px;
+    }
+
+    .defence-brand {
+      display: flex;
+      justify-content: center;
+      margin: 20px auto 0;
+      padding-top: 16px;
+      border-top: 1px solid var(--defence-line);
+    }
+
+    .defence-brand img {
+      display: block;
+      width: 80%;
+      height: auto;
+      max-height: clamp(42px, 8vh, 90px);
+      object-fit: contain;
+      object-position: center;
+    }
+
+    /* =====================================================
+       PAGE 7 — ACKNOWLEDGEMENTS
+       ===================================================== */
+
     .ack-title {
-      margin-bottom: 12px;
-      font-size: clamp(38px, 4.6vw, 70px);
+      font-size: clamp(38px, 4.2vw, 64px);
       text-align: center;
     }
 
     .ack-intro {
-      width: 100%;
-      max-width: none;
-      margin: 0 0 clamp(22px, 3vh, 36px);
+      margin: 18px 0 0;
       color: var(--muted);
-      font-size: clamp(18px, 1.7vw, 26px);
-      line-height: 1.45;
+      font-size: clamp(18px, 1.55vw, 24px);
+      line-height: 1.5;
       text-align: left;
+    }
+
+    /* Increased space between the intro and the grid. */
+    .acknowledgements .slide-heading {
+      margin-bottom: clamp(32px, 4vh, 48px);
     }
 
     .ack-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: var(--gap);
+      align-items: stretch;
     }
 
     .ack-card {
@@ -603,27 +905,34 @@
       background: var(--white);
       border: 1px solid var(--line);
       border-radius: var(--radius);
+      box-shadow: var(--shadow);
     }
 
-    .ack-card h3 {
-      margin: 0 0 14px;
+    /* Reduced padding only for boxes inside the ack grid. */
+    .ack-grid > .ack-card {
+      padding: clamp(10px, 1vw, 16px);
+    }
+
+    .ack-card h3,
+    .ack-partners h3 {
+      margin: 0 0 12px;
       color: var(--blue);
-      font-size: var(--ack-heading);
+      font-size: clamp(20px, 1.5vw, 25px);
       line-height: 1.25;
     }
 
     .ack-card p {
       margin: 0;
       color: var(--ink);
-      font-size: var(--ack-text);
+      font-size: clamp(17px, 1.3vw, 21px);
       line-height: 1.5;
     }
 
     .ack-card .ack-description {
-      margin-top: 10px;
+      margin-top: 12px;
       color: var(--muted);
-      font-size: clamp(14px, 1.05vw, 17px);
-      line-height: 1.45;
+      font-size: clamp(14px, 1vw, 17px);
+      line-height: 1.5;
     }
 
     .ack-supervisors {
@@ -637,13 +946,7 @@
       background: var(--white);
       border: 1px solid var(--line);
       border-radius: var(--radius);
-    }
-
-    .ack-partners h3 {
-      margin: 0 0 16px;
-      color: var(--blue);
-      font-size: var(--ack-heading);
-      line-height: 1.25;
+      box-shadow: var(--shadow);
     }
 
     .coauthor-list {
@@ -656,9 +959,8 @@
     }
 
     .coauthor-list li {
-      color: var(--ink);
-      font-size: clamp(15px, 1.15vw, 19px);
-      line-height: 1.4;
+      font-size: clamp(15px, 1.1vw, 18px);
+      line-height: 1.45;
       overflow-wrap: break-word;
     }
 
@@ -666,22 +968,37 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
-      margin-top: clamp(22px, 3vh, 36px);
-      padding-top: 18px;
+      gap: 20px;
+      margin-top: var(--gap);
+      padding-top: 20px;
       border-top: 1px solid var(--line);
     }
 
     .ack-closing p {
       margin: 0;
       color: var(--blue);
-      font-size: clamp(17px, 1.5vw, 24px);
+      font-size: clamp(18px, 1.5vw, 24px);
       line-height: 1.4;
+    }
+
+    .lectio {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    .lectio:hover {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .lectio:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 4px;
     }
 
     .ack-signature {
       color: var(--muted);
-      font-size: clamp(13px, 1vw, 16px);
+      font-size: clamp(13px, 0.95vw, 16px);
       text-align: right;
       line-height: 1.5;
     }
@@ -692,13 +1009,19 @@
 
     .footer {
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
       padding: 12px var(--page-x);
       background: var(--white);
       border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      width: 100%;
+      max-width: var(--content-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
     }
 
     .progress-track {
@@ -711,8 +1034,8 @@
     }
 
     .progress {
+      width: 14.2857%;
       height: 100%;
-      width: 16.6667%;
       background: var(--accent);
       transition: width 0.25s ease;
     }
@@ -720,6 +1043,7 @@
     .hint {
       color: var(--muted);
       font-size: 12px;
+      line-height: 1.5;
     }
 
     .controls {
@@ -729,16 +1053,20 @@
     }
 
     .controls button {
-      padding: 9px 15px;
+      padding: 9px 16px;
       color: var(--blue);
       background: var(--white);
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 9px;
       cursor: pointer;
+      transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease;
     }
 
     .controls button:hover:not(:disabled) {
       background: var(--soft);
+      border-color: #b9d0ea;
     }
 
     .controls button:disabled {
@@ -753,29 +1081,54 @@
     }
 
     #counter {
-      min-width: 44px;
-      text-align: center;
+      min-width: 48px;
       color: var(--muted);
       font-size: 14px;
+      font-variant-numeric: tabular-nums;
+      text-align: center;
     }
 
     /* =====================================================
        RESPONSIVE LAYOUTS
        ===================================================== */
 
+    @media (max-width: 1150px) {
+      .concept-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .page3-figure img {
+        max-height: 420px;
+      }
+
+      .cycle {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
     @media (max-width: 1000px) {
+      .opening-layout,
+      .network-layout,
+      .figure-pair {
+        grid-template-columns: 1fr;
+      }
+
+      .opening-figure img {
+        max-height: 400px;
+      }
+
+      .page2-figures img,
+      .page4-figures img {
+        max-height: 480px;
+      }
+
       .cycle {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .network-layout {
-        grid-template-columns: 1fr;
-      }
-
       .network-panel svg {
         max-width: 620px;
-        margin-left: auto;
-        margin-right: auto;
+        max-height: none;
       }
 
       .method-points {
@@ -793,10 +1146,9 @@
 
     @media (max-width: 950px) {
       .header-inner {
-        grid-template-columns:
-          minmax(0, 1fr)
-          minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         gap: 12px 20px;
+        padding: 14px 18px;
       }
 
       .institution {
@@ -813,11 +1165,9 @@
         grid-column: 1 / -1;
         grid-row: 2;
         justify-self: stretch;
-        grid-template-columns:
-          minmax(0, 1.2fr)
-          minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
         gap: 12px;
-        padding-top: 12px;
+        padding-top: 10px;
         border-top: 1px solid var(--line);
       }
 
@@ -827,10 +1177,15 @@
       }
     }
 
-    @media (max-width: 650px) {
+    @media (max-width: 700px) {
       :root {
         --page-x: 16px;
-        --page-y: 20px;
+        --page-y: 22px;
+        --gap: 16px;
+      }
+
+      .header {
+        padding-top: 10px;
       }
 
       .header-inner {
@@ -841,7 +1196,6 @@
       .defence-officials {
         grid-template-columns: 1fr;
         gap: 6px;
-        padding-top: 10px;
       }
 
       .official-row {
@@ -851,24 +1205,42 @@
       .grid,
       .cycle,
       .method-points,
-      .ack-grid {
+      .ack-grid,
+      .defence-details {
         grid-template-columns: 1fr;
       }
 
-      .hint {
-        display: none;
+      .slide-heading {
+        margin-bottom: 20px;
       }
 
-      .footer {
-        justify-content: center;
-      }
-
-      .controls button {
-        padding: 9px 12px;
+      .asset-figure img {
+        max-height: none;
       }
 
       .cycle-summary {
         text-align: left;
+      }
+
+      .defence-content {
+        padding: 26px 18px 18px;
+      }
+
+      .defence-title {
+        font-size: clamp(32px, 8vw, 56px);
+      }
+
+      .defence-details {
+        gap: 10px;
+      }
+
+      .defence-item {
+        padding: 13px 16px;
+      }
+
+      .defence-brand img {
+        width: 90%;
+        max-height: 52px;
       }
 
       .ack-closing {
@@ -879,69 +1251,125 @@
       .ack-signature {
         text-align: left;
       }
+
+      .hint {
+        display: none;
+      }
+
+      .footer-inner {
+        justify-content: center;
+      }
+
+      .controls button {
+        padding: 9px 12px;
+      }
     }
 
-    @media (max-height: 700px) and (min-width: 1001px) {
+    @media (max-height: 720px) and (min-width: 1001px) {
       :root {
-        --page-y: 16px;
-        --card-padding: 16px;
+        --page-y: 18px;
+        --gap: 16px;
+        --card-padding: 18px;
+      }
+
+      .header-inner {
+        padding-top: 12px;
+        padding-bottom: 12px;
+      }
+
+      .slide-heading {
+        margin-bottom: 18px;
+      }
+
+      .eyebrow {
+        margin-bottom: 8px;
+      }
+
+      h1 {
+        font-size: clamp(36px, 3.5vw, 52px);
       }
 
       h2 {
-        font-size: clamp(29px, 3vw, 43px);
-        margin-bottom: 12px;
+        font-size: clamp(30px, 2.6vw, 40px);
+      }
+
+      .subtitle {
+        margin-top: 12px;
+        font-size: 24px;
       }
 
       .lead {
-        font-size: 20px;
-        margin-bottom: 16px;
-      }
-
-      .cycle-card {
-        padding: 14px;
-      }
-
-      .cycle-card p {
-        font-size: 16px;
-      }
-
-      .highlight {
-        margin-top: 16px;
-        padding: 16px;
-        font-size: 23px;
-      }
-
-      .ack-title {
-        font-size: 42px;
-      }
-
-      .ack-intro {
-        margin-bottom: 18px;
+        margin-top: 10px;
         font-size: 19px;
       }
 
-      .ack-card,
-      .ack-partners {
-        padding: 16px;
+      .opening-question {
+        padding: 20px;
       }
 
-      .ack-card h3,
-      .ack-partners h3 {
-        margin-bottom: 10px;
-        font-size: 21px;
+      .opening-prompt {
+        font-size: 29px;
       }
 
-      .ack-card p {
-        font-size: 18px;
+      .opening-figure img {
+        max-height: 300px;
       }
 
-      .coauthor-list li {
-        font-size: 15px;
+      .highlight {
+        padding: 16px 20px;
+        font-size: 22px;
       }
 
-      .ack-closing {
-        margin-top: 18px;
+      .page2-figures img,
+      .page4-figures img {
+        max-height: 240px;
+      }
+
+      .defence-content {
+        padding-top: 22px;
+        padding-bottom: 16px;
+      }
+
+      .defence-eyebrow {
+        margin-bottom: 12px;
+      }
+
+      .defence-title {
+        font-size: clamp(34px, 3.8vw, 58px);
+      }
+
+      .defence-school {
+        margin-top: 12px;
+      }
+
+      .defence-accent-line {
+        margin: 14px auto;
+      }
+
+      .defence-item {
+        padding: 12px 18px;
+      }
+
+      .defence-bottom-row {
+        margin-top: 16px;
+      }
+
+      .defence-brand {
+        margin-top: 16px;
         padding-top: 12px;
+      }
+
+      .defence-brand img {
+        max-height: 44px;
+      }
+
+      .ack-title {
+        font-size: 44px;
+      }
+
+      .ack-intro {
+        margin-top: 12px;
+        font-size: 19px;
       }
     }
 
@@ -950,9 +1378,32 @@
         scroll-behavior: auto;
       }
 
-      .progress {
+      .progress,
+      .controls button {
         transition: none;
       }
+    }
+
+    /* Preserve the presentation's three-row structure. */
+    .header {
+      grid-row: 1;
+    }
+
+    .slides {
+      grid-row: 2;
+    }
+
+    .footer {
+      grid-row: 3;
+    }
+
+    /* Page 6: hide the persistent header and reclaim its space. */
+    body.defence-page-active {
+      grid-template-rows: 0 minmax(0, 1fr) auto;
+    }
+
+    body.defence-page-active > .header {
+      display: none;
     }
   </style>
 </head>
@@ -999,43 +1450,71 @@
     id="slides"
     class="slides"
     tabindex="0"
-    aria-label="Six-slide lectio praecursoria presentation"
+    aria-label="Seven-slide lectio praecursoria presentation"
   >
 
     <!-- ==================================================
          PAGE 1: TITLE AND OPENING
          ================================================== -->
 
-    <section class="slide" aria-labelledby="title-1">
+    <section
+      class="slide opening-slide"
+      aria-labelledby="title-1"
+    >
       <div class="content">
 
-        <p class="eyebrow">Lectio Praecursoria</p>
+        <div class="slide-heading">
+          <p class="eyebrow">Lectio Praecursoria</p>
 
-        <h1 id="title-1">
-          Knowledge Production<br>
-          in the New Data Era
-        </h1>
+          <h1 id="title-1">
+            Knowledge Production<br>
+            in the New Data Era
+          </h1>
 
-        <p class="subtitle">
-          A Tourism Platform-Method-Concept Digital Epistemology
-        </p>
-
-        <div class="opening-question">
-          <p>
-            You ask ChatGPT or Gemini:<br>
-            <strong>“Where should I eat tonight?”</strong>
+          <p class="subtitle">
+            A Tourism Platform-Method-Concept Digital Epistemology
           </p>
-
-          <small>
-            A useful recommendation may guide a decision.
-            Research must also examine its evidence, assumptions,
-            and analytical process.
-          </small>
         </div>
 
-        <div class="highlight">
-          For a traveller, the answer may end the search.<br>
-          <strong>For a researcher, it begins the inquiry.</strong>
+        <div class="opening-layout">
+
+          <div class="opening-copy">
+
+            <div class="opening-question">
+              <p>
+                You ask ChatGPT or Gemini:
+                <strong class="opening-prompt">
+                  “Where should I eat tonight?”
+                </strong>
+              </p>
+
+              <small>
+                A useful recommendation may guide a decision.
+                Research must also examine its evidence, assumptions,
+                and analytical process.
+              </small>
+            </div>
+
+            <div class="highlight">
+              For a traveller, the answer may end the search.<br>
+              <strong>
+                For a researcher, it begins the inquiry.
+              </strong>
+            </div>
+
+          </div>
+
+          <figure class="asset-figure opening-figure">
+            <!-- Replace src with the page 1 figure URL.
+                 Update alt to describe the actual figure. -->
+            <img
+              id="page1_figure1"
+              src="images/p1f1.png"
+              alt="[Add an accurate description of the page 1 figure]"
+              decoding="async"
+            >
+          </figure>
+
         </div>
 
         <p class="note">
@@ -1051,17 +1530,22 @@
          PAGE 2: PLATFORM
          ================================================== -->
 
-    <section class="slide" aria-labelledby="title-2">
+    <section
+      class="slide platform-slide"
+      aria-labelledby="title-2"
+    >
       <div class="content">
 
-        <p class="eyebrow">Platform · Article I</p>
+        <div class="slide-heading">
+          <p class="eyebrow">Platform · Article I</p>
 
-        <h2 id="title-2">What becomes visible?</h2>
+          <h2 id="title-2">What becomes visible?</h2>
 
-        <p class="lead">
-          Digital reviews are evidence about experiences—
-          but platforms shape the evidence available to us.
-        </p>
+          <p class="lead">
+            Digital reviews are evidence about experiences,
+            but platforms shape the evidence available to us.
+          </p>
+        </div>
 
         <div class="grid">
 
@@ -1100,6 +1584,30 @@
 
         </div>
 
+        <div class="figure-pair page2-figures">
+
+          <figure class="asset-figure">
+            <!-- Replace src with the first page 2 figure URL. -->
+            <img
+              id="page2_figure1"
+              src="images/p2f1.png"
+              alt="[Add an accurate description of page 2 figure 1]"
+              decoding="async"
+            >
+          </figure>
+
+          <figure class="asset-figure">
+            <!-- Replace src with the second page 2 figure URL. -->
+            <img
+              id="page2_figure2"
+              src="images/p2f2.png"
+              alt="[Add an accurate description of page 2 figure 2]"
+              decoding="async"
+            >
+          </figure>
+
+        </div>
+
         <div class="highlight">
           <strong>
             Selection begins before the researcher selects the data.
@@ -1116,128 +1624,149 @@
     </section>
 
     <!-- ==================================================
-         PAGE 3: ILLUSTRATIVE eCFTD CYCLE
+         PAGE 3: eCFTD FRAMEWORK AND ILLUSTRATIVE CYCLE
          ================================================== -->
 
-    <section class="slide" aria-labelledby="title-3">
+    <section
+      class="slide concept-slide"
+      aria-labelledby="title-3"
+    >
       <div class="content">
 
-        <p class="eyebrow">Concept · Article III · eCFTD</p>
+        <div class="slide-heading">
+          <p class="eyebrow">Concept · Article III · eCFTD</p>
+        </div>
 
-        <h2 id="title-3">
-          From “I want to go” to “I went.”
-        </h2>
+        <div class="concept-layout">
 
-        <p class="lead">
-          One visitor, one nature destination:
-          intention becomes action through volitional processes—
-          and the experience begins another cycle.
-        </p>
+          <!-- Title moved above the image inside concept-layout. -->
+          <div class="concept-visual">
 
-        <div class="cycle">
+            <h2 id="title-3">
+              “I want to go”<br>
+              <span style="display: block; text-align: center;">To “I Went”</span>
+                      
+          
+            </h2>
 
-          <article class="cycle-card">
-            <div class="cycle-heading">
-              <span class="step">1</span>
-              <h3>Image and other predictors</h3>
-            </div>
+            <figure class="asset-figure page3-figure">
+              <!-- Replace src with the page 3 figure URL. -->
+              <img
+                id="page3_figure1"
+                src="images/p3f1.jpg"
+                alt="[Add an accurate description of the page 3 figure]"
+                decoding="async"
+              >
+            </figure>
 
-            <p class="quote">
-              “It looks peaceful. I value nature activities.
-              My friends recommend it, and the visit seems manageable.”
-            </p>
+          </div>
 
-            <p class="details">
-              Beliefs and feelings; attitude;
-              social encouragement; perceived feasibility.
-            </p>
-          </article>
+          <div class="cycle">
 
-          <article class="cycle-card">
-            <div class="cycle-heading">
-              <span class="step">2</span>
-              <h3>Behavioural intention</h3>
-            </div>
+            <article class="cycle-card">
+              <div class="cycle-heading">
+                <span class="step">1</span>
+                <h3>Image and other predictors</h3>
+              </div>
 
-            <p class="quote">
-              “I plan to visit next month and book the guided walk.”
-            </p>
+              <p class="quote">
+                “It looks peaceful. I value nature activities.
+                My friends recommend it, and the visit seems manageable.”
+              </p>
 
-            <p class="details">
-              A plan to act—not evidence
-              that the visit or booking occurred.
-            </p>
-          </article>
+              <p class="details">
+                Beliefs and feelings; attitude;
+                social encouragement; perceived feasibility.
+              </p>
+            </article>
 
-          <article class="cycle-card volition">
-            <div class="cycle-heading">
-              <span class="step">3</span>
-              <h3>Volitional processes</h3>
-            </div>
+            <article class="cycle-card">
+              <div class="cycle-heading">
+                <span class="step">2</span>
+                <h3>Behavioural intention</h3>
+              </div>
 
-            <p class="quote">
-              “I choose a date and check the bus.
-              The shorter route gives me confidence to participate.”
-            </p>
+              <p class="quote">
+                “I plan to visit next month and book the guided walk.”
+              </p>
 
-            <p class="details">
-              <strong>Action planning:</strong> concrete arrangements.<br>
-              <strong>Self-efficacy:</strong> confidence in execution.
-            </p>
-          </article>
+              <p class="details">
+                A plan to act—not evidence
+                that the visit or booking occurred.
+              </p>
+            </article>
 
-          <article class="cycle-card conditions">
-            <div class="cycle-heading">
-              <span class="step">4</span>
-              <h3>Persistence and constraints</h3>
-            </div>
+            <article class="cycle-card volition">
+              <div class="cycle-heading">
+                <span class="step">3</span>
+                <h3>Volitional processes</h3>
+              </div>
 
-            <p class="quote">
-              “I still want to go weeks later.
-              But I cannot join the evening tour:
-              the last bus leaves too early.”
-            </p>
+              <p class="quote">
+                “I choose a date and check the bus.
+                The shorter route gives me confidence to participate.”
+              </p>
 
-            <p class="details">
-              <strong>Intention stability:</strong> wanting persists.<br>
-              Time, transport, and resources shape what is possible.
-            </p>
-          </article>
+              <p class="details">
+                <strong>Action planning:</strong> concrete arrangements.<br>
+                <strong>Self-efficacy:</strong> confidence in execution.
+              </p>
+            </article>
 
-          <article class="cycle-card">
-            <div class="cycle-heading">
-              <span class="step">5</span>
-              <h3>Actions and their evidence</h3>
-            </div>
+            <article class="cycle-card conditions">
+              <div class="cycle-heading">
+                <span class="step">4</span>
+                <h3>Persistence and constraints</h3>
+              </div>
 
-            <p class="quote">
-              “I bought a ticket, joined the daytime walk,
-              and recommended it to colleagues.”
-            </p>
+              <p class="quote">
+                “I still want to go weeks later.
+                But I cannot join the evening tour:
+                the last bus leaves too early.”
+              </p>
 
-            <p class="details">
-              Purchase, participation, and recommendation
-              are distinct actions. Reports still need assessment.
-            </p>
-          </article>
+              <p class="details">
+                <strong>Intention stability:</strong> wanting persists.<br>
+                Time, transport, and resources shape what is possible.
+              </p>
+            </article>
 
-          <article class="cycle-card feedback">
-            <div class="cycle-heading">
-              <span class="step">6</span>
-              <h3>Feedback and a new cycle</h3>
-            </div>
+            <article class="cycle-card">
+              <div class="cycle-heading">
+                <span class="step">5</span>
+                <h3>Actions and their evidence</h3>
+              </div>
 
-            <p class="quote">
-              “The visit changed my view.
-              I posted a review and now intend to return.”
-            </p>
+              <p class="quote">
+                “I bought a ticket, joined the daytime walk,
+                and recommended it to colleagues.”
+              </p>
 
-            <p class="details">
-              Experience updates image.
-              The review may shape another visitor’s
-              image and intentions.
-            </p>
-          </article>
+              <p class="details">
+                Purchase, participation, and recommendation
+                are distinct actions. Reports still need assessment.
+              </p>
+            </article>
+
+            <article class="cycle-card feedback">
+              <div class="cycle-heading">
+                <span class="step">6</span>
+                <h3>Feedback and a new cycle</h3>
+              </div>
+
+              <p class="quote">
+                “The visit changed my view.
+                I posted a review and now intend to return.”
+              </p>
+
+              <p class="details">
+                Experience updates image.
+                The review may shape another visitor’s
+                image and intentions.
+              </p>
+            </article>
+
+          </div>
 
         </div>
 
@@ -1259,32 +1788,37 @@
          PAGE 4: KPTopic AND SEMANTIC NETWORK
          ================================================== -->
 
-    <section class="slide" aria-labelledby="title-4">
+    <section
+      class="slide method-slide"
+      aria-labelledby="title-4"
+    >
       <div class="content">
 
-        <p class="eyebrow">Method · Article II · KPTopic</p>
+        <div class="slide-heading">
+          <p class="eyebrow">Method · Article II · KPTopic</p>
 
-        <h2 id="title-4">
-          Not just words—their connections.
-        </h2>
+          <h2 id="title-4">
+            Not just words but their semantic connections.
+          </h2>
 
-        <p class="lead">
-          KPTopic organizes adjectives, nouns, and verbs
-          into inspectable semantic networks.
-        </p>
+          <p class="lead">
+            KPTopic organizes adjectives, nouns, and verbs
+            into inspectable semantic networks.
+          </p>
+        </div>
 
         <div class="network-layout">
 
           <figure class="network-panel">
 
             <p class="review">
-              “The room was veerry clean👍, the staff were friendly,
+              “The room was veeerry clean👍, the staff were friendly,
               and I would recommend the hotel.”
             </p>
 
             <!--
-              Teaching illustration, not empirical KPTopic output.
-              The links are manually selected to illustrate relationships.
+              Existing teaching illustration preserved.
+              This is not empirical KPTopic output.
             -->
             <svg
               viewBox="0 0 640 350"
@@ -1302,7 +1836,6 @@
                 not causation or automatic intention classification.
               </desc>
 
-              <!-- Connections -->
               <line
                 class="edge"
                 x1="90" y1="75"
@@ -1333,7 +1866,6 @@
                 x2="550" y2="170"
               />
 
-              <!-- Adjective: clean -->
               <circle
                 class="node-adjective"
                 cx="90" cy="75" r="49"
@@ -1344,7 +1876,6 @@
                 x="90" y="75"
               >clean</text>
 
-              <!-- Noun: room -->
               <circle
                 class="node-noun"
                 cx="240" cy="75" r="49"
@@ -1355,7 +1886,6 @@
                 x="240" y="75"
               >room</text>
 
-              <!-- Adjective: friendly -->
               <circle
                 class="node-adjective"
                 cx="90" cy="260" r="55"
@@ -1366,7 +1896,6 @@
                 x="90" y="260"
               >friendly</text>
 
-              <!-- Noun: staff -->
               <circle
                 class="node-noun"
                 cx="240" cy="260" r="49"
@@ -1377,7 +1906,6 @@
                 x="240" y="260"
               >staff</text>
 
-              <!-- Noun: hotel -->
               <circle
                 class="node-noun"
                 cx="395" cy="170" r="55"
@@ -1388,7 +1916,6 @@
                 x="395" y="170"
               >hotel</text>
 
-              <!-- Verb: recommend -->
               <rect
                 class="node-verb"
                 x="478" y="135"
@@ -1460,6 +1987,31 @@
             </div>
 
           </div>
+
+        </div>
+
+        <div class="figure-pair page4-figures">
+
+          <figure class="asset-figure">
+            <!-- Replace src with the first page 4 figure URL. -->
+            <img
+              id="page4_figure1"
+              src="images/p4f1.png"
+              alt="[Add an accurate description of page 4 figure 1]"
+              decoding="async"
+            >
+          </figure>
+
+          <figure class="asset-figure">
+            <!-- Replace src with the second page 4 figure URL. -->
+            <img
+              id="page4_figure2"
+              src="images/p4f2.png"
+              alt="[Add an accurate description of page 4 figure 2]"
+              decoding="async"
+            >
+          </figure>
+
         </div>
 
         <p class="note">
@@ -1479,19 +2031,21 @@
     <section class="slide" aria-labelledby="title-5">
       <div class="content">
 
-        <p class="eyebrow">
-          Three layers · One knowledge-production problem
-        </p>
+        <div class="slide-heading">
+          <p class="eyebrow">
+            Three layers · One knowledge-production problem
+          </p>
 
-        <h2 id="title-5">
-          Digital knowledge must be made,<br>
-          not merely extracted.
-        </h2>
+          <h2 id="title-5">
+            Digital knowledge must be made,<br>
+            not merely extracted.
+          </h2>
 
-        <p class="lead">
-          A convincing result is not enough.
-          We must be able to examine its foundations.
-        </p>
+          <p class="lead">
+            A convincing result is not enough.
+            We must be able to examine its foundations.
+          </p>
+        </div>
 
         <div class="grid">
 
@@ -1547,28 +2101,113 @@
     </section>
 
     <!-- ==================================================
-         PAGE 6: ACKNOWLEDGEMENTS
-         Static closing page for the remainder of the defence
+         PAGE 6: PUBLIC DEFENCE INFORMATION
+         ================================================== -->
+
+    <section
+      class="slide defence-slide"
+      aria-labelledby="title-6"
+    >
+      <div class="defence-content">
+
+        <p class="defence-eyebrow">
+          Public Defence · Doctoral Dissertation · Marketing
+        </p>
+
+        <h2 id="title-6" class="defence-title">
+          <span class="defence-title-primary">
+            Knowledge Production
+          </span>
+          <span class="defence-title-secondary">
+            in the New Data Era
+          </span>
+        </h2>
+
+        <p class="defence-school">UEF Business School</p>
+
+        <div
+          class="defence-accent-line"
+          aria-hidden="true"
+        ></div>
+
+        <section
+          class="defence-details"
+          aria-label="Defence participants"
+        >
+
+          <div class="defence-item">
+            <span class="defence-item-label">Defender</span>
+            <p>Peng A. Yang</p>
+          </div>
+
+          <div class="defence-item">
+            <span class="defence-item-label">Opponent</span>
+            <p>Professor Berta Ferrer-Rosell</p>
+          </div>
+
+          <div class="defence-item">
+            <span class="defence-item-label">Supervisors</span>
+            <p>
+              Professor Juho Pesonen<br>
+              Associate Professor Heli Hallikainen
+            </p>
+          </div>
+
+          <div class="defence-item">
+            <span class="defence-item-label">Custos</span>
+            <p>Professor Juho Pesonen</p>
+          </div>
+
+        </section>
+
+        <div class="defence-bottom-row">
+          <div class="defence-place-date">
+            Joensuu, Finland · 6 November 2026
+          </div>
+
+          <a
+            class="defence-lectio"
+            href="rectio_main.html"
+          >
+            Lectio Praecursoria
+          </a>
+        </div>
+
+        <footer class="defence-brand">
+          <img
+            src="images/uef_logo.png"
+            alt="University and partner logos"
+            decoding="async"
+          >
+        </footer>
+
+      </div>
+    </section>
+
+    <!-- ==================================================
+         PAGE 7: ACKNOWLEDGEMENTS
          ================================================== -->
 
     <section
       class="slide acknowledgements"
-      aria-labelledby="title-6"
+      aria-labelledby="title-7"
     >
       <div class="content">
 
-        <p class="eyebrow">
-          Joensuu,Finland · 6.11.2026
-        </p>
+        <div class="slide-heading">
+          <p class="eyebrow">
+            Joensuu,Finland · 6.11.2026
+          </p>
 
-        <h2 id="title-6" class="ack-title">
-          Thanks · Kiitos · 谢谢
-        </h2>
+          <h2 id="title-7" class="ack-title">
+            Thanks · Kiitos · 谢谢
+          </h2>
 
-        <p class="ack-intro">
-          This doctoral journey has been shaped by thoughtful guidance,
-          generous support, and collaboration across countries.
-        </p>
+          <p class="ack-intro">
+            This doctoral journey has been shaped by thoughtful guidance,
+            generous support, and collaboration across countries.
+          </p>
+        </div>
 
         <div class="ack-grid">
 
@@ -1608,7 +2247,7 @@
             </p>
 
             <p class="ack-description">
-              The Foundation for Economic Education—
+              The Foundation for Economic Education
               for the financial support that made this work possible.
             </p>
           </article>
@@ -1646,8 +2285,9 @@
 
         <div class="ack-closing">
           <p>
-            
-            <a class="lectio" href="index.html"><strong>From data to knowledge.</strong></a>
+            <a class="lectio" href="index.html">
+              <strong>From data to knowledge.</strong>
+            </a>
           </p>
 
           <div class="ack-signature">
@@ -1668,37 +2308,42 @@
       <div class="progress" id="progress"></div>
     </div>
 
-    <div class="hint">
-      ← / →: slides · ↑ / ↓: scroll · F: full screen
+    <div class="footer-inner">
+
+      <div class="hint">
+        ← / →: slides · ↑ / ↓: scroll · F: full screen
+      </div>
+
+      <nav class="controls" aria-label="Slide navigation">
+
+        <button
+          id="previous"
+          type="button"
+          aria-label="Previous slide"
+          disabled
+        >
+          ← Previous
+        </button>
+
+        <span
+          id="counter"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          1 / 7
+        </span>
+
+        <button
+          id="next"
+          type="button"
+          aria-label="Next slide"
+        >
+          Next →
+        </button>
+
+      </nav>
+
     </div>
-
-    <nav class="controls" aria-label="Slide navigation">
-
-      <button
-        id="previous"
-        type="button"
-        aria-label="Previous slide"
-      >
-        ← Previous
-      </button>
-
-      <span
-        id="counter"
-        aria-live="polite"
-        aria-atomic="true"
-      >
-        1 / 6
-      </span>
-
-      <button
-        id="next"
-        type="button"
-        aria-label="Next slide"
-      >
-        Next →
-      </button>
-
-    </nav>
 
   </footer>
 
@@ -1726,6 +2371,12 @@
 
       progress.style.width =
         `${((current + 1) / pages.length) * 100}%`;
+
+      // Hide the persistent header only on the public-defence slide.
+      document.body.classList.toggle(
+        "defence-page-active",
+        pages[current].classList.contains("defence-slide")
+      );
     }
 
     function goTo(index, animate = true) {
@@ -1753,7 +2404,7 @@
       goTo(current + 1);
     });
 
-    /* Update navigation after swiping or horizontal scrolling */
+    /* Update controls after horizontal scrolling or swiping. */
     slides.addEventListener("scroll", () => {
       if (scrollFrame !== null) return;
 
@@ -1803,7 +2454,7 @@
         goTo(current - 1);
       }
 
-      /* Scroll vertically within the current slide */
+      /* Scroll vertically within the current slide. */
       if (
         event.key === "ArrowDown" ||
         event.key === "ArrowUp"
@@ -1845,7 +2496,7 @@
       }
     });
 
-    /* Preserve slide alignment when the window changes size */
+    /* Preserve horizontal alignment after resizing. */
     window.addEventListener("resize", () => {
       clearTimeout(resizeTimer);
 
@@ -1856,7 +2507,7 @@
 
     /*
       No timer or automatic slide advance.
-      Page 6 remains displayed until the presenter navigates away.
+      Page 7 remains displayed until the presenter navigates away.
     */
     updateControls();
   </script>
